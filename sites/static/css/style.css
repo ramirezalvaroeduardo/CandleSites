@@ -7,7 +7,7 @@
 	z-index: -1;
 	background-image: url("../img/32.jpg");
 	position: absolute;
-	top: 3rem;
+	top: -6.5rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -26,9 +26,13 @@
 }
 
 .dSectionTitle {
-	margin: 0 1rem 0.5rem 1.2rem;
+	margin: 0 1rem 0.5rem 0.9rem;
+	padding: 0 0 0.5rem 0.5rem;
 	font-weight: 700;
 	color: #533110;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b1b0b0), color-stop(1, #533110) );
+	background: -moz-linear-gradient( center top, #b1b0b0 5%, #533110 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b1b0b0', endColorstr='#533110');
 }
 
 .dFileSet {
