@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 #from siteLinks.views import siteLinks
+from sites import views
 admin.autodiscover()
 
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('sites/', include('sites.urls'), name='sites'),
     path('admin/', admin.site.urls),
 ]
