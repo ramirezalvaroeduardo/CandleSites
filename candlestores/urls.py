@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-#from sites import views as candle_view
+#from siteLinks.views import siteLinks
 admin.autodiscover()
 
 

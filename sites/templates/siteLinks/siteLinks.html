@@ -1,0 +1,47 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+    <h3 class='dSectionTitle'>{{ pageTitle }}</h3>
+    <fieldset class='dFileSet'>
+        <!--legend class='dLegendTitle'>Links ({{ inventory }} records)</legend-->
+        <div class="container">
+            <div class='row justify-content-between'>
+                <div class='col-md-5'>
+                    <ul class='ulStyle'>
+                        {% for sitelink in sitelinks %}
+                            <li class='liStyle' onclick='alert("ID: " + {{sitelink.id}})'><a href='#{{sitelink.id}}' class='aStyle'>{{ sitelink.companyName }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>                
+                <div class='col-md-7'>
+                    <form method='POST' class='formClass'>
+                        <fieldset>
+                            <legend  class='legClass'>Link Record</legend>
+                            <label class='dLabel' for='cname'>Company Name:</label>
+                            <input class='dInput' type='text' id='cname' name='cname'>
+                            <label class='dLabel' for='clink'>Company Web Site:</label>
+                            <input class='dInput' type='text' id='clink' name='clink'>
+                            <label class='dLabel' for='cphone'>Company Phone Number:</label>
+                            <input class='dInput' class='dInput' type='text' id='cphone' name='cphone'>
+                            <label class='dLabel' for='caddress'>Company Address:</label>
+                            <input class='dInput' type='text' id='caddress' name='cncaddressme'>
+                        </fieldset>
+                    </form>
+                    <form action=""  class="formBlog" >
+                        <fieldset>
+                            <legend  class='legClass'>Rating</legend>
+                            <label class='dLabel' for='bContent'>Write your opinion here:</label>
+                            <textarea type='text' class='textClass'></textarea>
+                        </fieldset>
+                    </form>
+                                        <form method='POST'class='formClass'>
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                        <input type='submit' value='Rate'/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}
