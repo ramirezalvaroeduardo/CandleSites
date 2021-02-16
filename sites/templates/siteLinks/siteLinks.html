@@ -7,15 +7,74 @@
         <!--legend class='dLegendTitle'>Links ({{ inventory }} records)</legend-->
         <div class="container">
             <div class='row justify-content-between'>
-                <div class='col-md-5'>
-                    <ul class='ulStyle'>
-                        {% for sitelink in sitelinks %}
-                            <li class='liStyle' onclick='alert("ID: " + {{sitelink.id}})'><a href='#{{sitelink.id}}' class='aStyle'>{{ sitelink.companyName }}</a></li>
-                        {% endfor %}
-                    </ul>
+                <!-- Company Site Informmation Display Box -->
+                <div class='col-sm-5'>
+                    <fieldset id='recSites'>
+                        <legend id='legLine' class='liHeaderAlt'><a class='newRec' 
+                            onClick='showItem("captForm"); hideItem("companyInfo"); '>&#x2795; Add</a>Recorded Sites<!--a class='delRec'>&#x2716;</a--></legend>
+                        <ul id='id_recSites' class='ulStyle'>
+                            {% if recnum == 0 %}
+                                <li>
+                                    <input type='button' 
+                                        class='liButton' 
+                                        onclick="location.href='{% url 'about' %}'" 
+                                        value='No records. Click on the Plus-Add Button Above to Insert.'
+                                    />
+                                </li>
+                            {% else %}
+                                {% for sitelink in sitelinks %}
+                                    <li class='liStyle' 
+                                        onclick='showCompany("{{sitelink.companyName}}", "{{sitelink.companyLink}}", "{{sitelink.companyPhone}}", "{{sitelink.companyAddress}}", {{ siteComms }}, {{ commtrs }} ); hideItem("captForm");'><a href='#{{sitelink.id}}' class='aStyle'>{{ sitelink.companyName }}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </fieldset>
                 </div>                
-                <div class='col-md-7'>
-                    <form method='POST' class='formClass'>
+                <div class='col-sm-7' >
+                    <div id='companyInfo' class='companyInfo'>
+                        <!-- Company Site Informmation Display Box -->
+                        <div>
+                            <a class='closeItem' onClick='hideItem("companyInfo")'>X-Close</a>
+                            <p id='cName' class='companyName'>Company Name</p>
+                        </div>
+                        <div>
+                            <p class='companySymbol'>W</p>
+                            <a id='cSite' class='companyData' target="_blank" rel="noopener noreferrer">Web Site</a>
+                        </div>
+                        <div>
+                            <a class='companySymbol'>&#x260E;</a>
+                            <p id='cPhone' class='companyData'>Phone Number</p>
+                        </div>
+                        <div>
+                            <a class='companySymbol'>&#x1F3E0;</a>
+                            <p id='cAddress' class='companyData'>Address</p>
+                        </div>
+                        <div>
+                            <a class='companySymbol'>&#9734;</a>
+                            <p id='cRating' class='companyData'>Rating</p>
+                        </div>
+                    </div>
+                    
+                    <form id="captForm" method='POST' class='formClass'>
+                        <!-- Capture New Company Site Form -->
+                        <fieldset>
+                            <legend  class='legClass'>New Company Site</legend>
+                            {% csrf_token %}
+                            {{ form.as_table }}
+                            <input type='submit' onClick='captureRecSite("id_companyName");' class='submitClass' value='Rate'/>
+                        </fieldset>
+                    </form>
+                    <form method='POST' class='formBlog'  style='display: none;'>
+                        <!-- Capture Company Comment Box -->
+                        <fieldset>
+                            <legend  class='legClass'>Rating</legend>
+                            <label class='dLabel' for='bContent'>Write your opinion here:</label>
+                            <textarea type='text' class='textClass'></textarea>
+                        </fieldset>
+                    </form>
+    
+
+                    <!--form method='POST' class='formClass'>
                         <fieldset>
                             <legend  class='legClass'>Link Record</legend>
                             <label class='dLabel' for='cname'>Company Name:</label>
@@ -27,20 +86,9 @@
                             <label class='dLabel' for='caddress'>Company Address:</label>
                             <input class='dInput' type='text' id='caddress' name='cncaddressme'>
                         </fieldset>
-                    </form>
-                    <form action=""  class="formBlog" >
-                        <fieldset>
-                            <legend  class='legClass'>Rating</legend>
-                            <label class='dLabel' for='bContent'>Write your opinion here:</label>
-                            <textarea type='text' class='textClass'></textarea>
-                        </fieldset>
-                    </form>
-                                        <form method='POST'class='formClass'>
-                        {% csrf_token %}
-                        {{ form.as_table }}
-                        <input type='submit' value='Rate'/>
-                    </form>
+                    </form-->
                 </div>
+
             </div>
         </div>
     </fieldset>

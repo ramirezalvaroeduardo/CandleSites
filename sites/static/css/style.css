@@ -5,18 +5,19 @@
 
 .mainDiv {
 	z-index: -1;
-	background-image: url("../img/32.jpg");
+	background-image: url("../img/39.jpg");
 	position: absolute;
 	background-position-y: 6.5rem;;
 	top: 0rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	opacity: 0.8;
+	opacity: 1;
 	background-repeat: repeat;
 	background-attachment: fixed;
 	background-size: 100%;
-	height: 150rem;
+	height: 100rem;
+	transition: background-image 3s ease-in-out;
 }
 
 .ownNavBar {
@@ -30,7 +31,7 @@
 	margin: 0 1rem 0.5rem 0.9rem;
 	padding: 0 0 0.5rem 0.5rem;
 	font-weight: 700;
-	color: #533110;
+	color: #c5c5c5;
 	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b1b0b0), color-stop(1, #533110) );
 	background: -moz-linear-gradient( center top, #b1b0b0 5%, #533110 100% );
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b1b0b0', endColorstr='#533110');
@@ -41,13 +42,12 @@
 }
 
 .dLegendTitle {
-	display: block;
 	font-family: Helvetica;
 	font-size: 24px;
 	font-weight: 700;
 	text-shadow: 1px 1px 0 #fff;
 	color: #533110;
-	padding: 0 10px 0 10px;
+	padding: 0 1rem 0 1rem;
 	margin: 0px 0 0px 0px;
 	-moz-box-shadow: inset 0 1px 0 0 #fff;
 	-webkit-box-shadow: inset 0 1px 0 0 #fff;
@@ -64,24 +64,83 @@
 
 .ulStyle {
 	margin-left: 0;
-	padding-left: 1rem;
+	/* padding-left: 1rem; */
+	padding: 0.5rem 0.5rem 0.5rem 1rem;
 	list-style : none;
 	border: solid 0.1rem #64523f;
 	border-radius: 0.3rem;
 	font-size: 1rem;
 	background-color: rgba(240, 240, 240, 0.8);
+	max-height: 40rem;
+	overflow-y: auto;
+	box-shadow: 1rem 1rem 0.5rem #b1b0b0;
+}
+
+.liHeaderAlt{
+	padding: 0 1rem 0 1rem;
+	font-weight: 700;
+	color: #c5c5c5;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #533110), color-stop(1, #b1b0b0) );
+	background: -moz-linear-gradient( center top, #533110 5%, #b1b0b0 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#533110', endColorstr='#b1b0b0');
+	float: left;
+	height: 2.4rem
+}
+
+.newRec {
+	margin-top: 0.5rem;
+	padding: 0 0.25rem 0 0.25rem;
+	text-decoration: none;
+	float: right;
+	color: #c5c5c5;
+	vertical-align: top;
+	border: none;
+	background-color: #7e6851;
+	border-radius: 0.2rem;
+	font-weight: normal;
+	font-size: 1.2rem;
+}
+
+.newRec:Hover {
+	color: rgb(0, 80, 0);
+}
+
+.delRec {
+	margin-left: 0.3rem;
+	padding: 0 0.25rem 0 0.25rem;
+	text-decoration: none;
+	float: right;
+	color: #c5c5c5;
+	vertical-align: middle;
+	border: none;
+	background-color: rgb(153, 0, 0);
+	border-radius: 0.2rem;
+}
+
+.liHeader{
+	font-weight: 700;
 }
 
 .liStyle:before {
 	margin-left: 0;
 	content: '\2617' ;
-	/* content : '☛'; */
 	display: block;
 	float: left;
 	width: 1.2rem;
 	color: #64523f;
 	background-color: rgba(240, 240, 240, 0.2);
 	zoom: 100%;
+}
+
+.liButton {
+	margin-left: 0;
+	display: block;
+	float: none;
+	font-weight: 700;
+	color: #bd7126;
+	background-color: rgba(240, 240, 240, 0.2);
+	border: solid 0rem;
+	width: 100%;
 }
 
 .aStyle {
@@ -99,6 +158,11 @@
 	border-radius: 0.3rem;
 }
 
+label {
+	margin: 0.3rem 0 0 0.5rem;
+	color: #c5c5c5;
+}
+
 .dLabel {
 	margin-left: 0.5rem;
 	color: #c5c5c5;
@@ -106,24 +170,33 @@
 
 .dInput {
 	display: block;
-	margin: 0.1rem 1.5rem 0.3rem 2.5rem;
+	margin: 0.1rem 1.5rem 0.3rem 0.5rem;
 	padding-left: 0.3rem;
-	width: 87%;
-	height: 1.5rem;
+	width: 90%;
+	height: 2.5rem;
 	background-color: #b1b0b0;
-	font-size: 0.9rem;
+	font-size: 1.2rem;
+
+	border: none;
+	border-radius: 0.3rem;
+
 }
 
 .legClass {
 	font-family: Helvetica; 
-	font-size: 22px;
+	font-size: 2rem;
 	color: #c5c5c5;
 	font-weight: 700;
 }
 
 .formClass {
-	display: block;
+	display: none;
+	margin-top: 3rem;
 	background-color: #7e6851;
+	background-image: url("../../static/img/companyInfo.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 1;
 	border: solid 0.1rem; 
 	border-radius: 0.3rem; 
 	padding: 0.5rem 1rem 1rem 1rem;
@@ -139,11 +212,69 @@
 }
 
 .textClass {
-	display: block;
 	margin: 0.1rem 1.5rem 0.3rem 2.5rem;
 	padding-left: 0.3rem;
 	width: 87%;
 	height: 14rem;
 	background-color: #b1b0b0;
 	font-size: 0.9rem;
+}
+
+.companyInfo {
+	display: none;
+	margin-top: 3rem; 
+	background-image: url("../../static/img/companyInfo.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 1;
+	background-color: #7e6851;
+	border: solid 0.1rem; 
+	border-radius: 0.3rem; 
+	padding: 0.5rem 1rem 1rem 1rem;
+	box-shadow: 1rem 1rem 0.5rem #b1b0b0;
+}
+
+
+.companyName {
+	margin: 1rem 0 1rem 0;
+	font-size: 2.4rem;
+	font-weight: 700;
+	color: #c5c5c5;
+}
+
+.companyData {
+	display: inline-block;
+	margin:0 0 0 1rem;
+	padding: 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #c5c5c5;
+	text-decoration: none;
+}
+
+.companySymbol {
+	margin: 0.3rem 0.5rem 0 0;;
+	padding: 0 0.25rem 0 0.25rem;
+	text-decoration: none;
+	float: left;
+	color: #c5c5c5;
+	vertical-align: top;
+	border: none;
+	background-color: #7e6851;
+	border-radius: 0.2rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	width: 1.6rem;
+}
+
+.closeItem {
+	float: right;
+	font-size: 1rem;
+	text-decoration: none;
+	color: #c5c5c5;
+	cursor: pointer;
+}
+
+.closeItem:Hover {
+	color: red;
 }

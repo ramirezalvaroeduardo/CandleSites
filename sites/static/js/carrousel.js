@@ -7,10 +7,7 @@ const pathSufixx = '.jpg")';
 
 function chgBkgImage() {
     if( firstImag > totImgs ) { firstImag = 1; }
-    console.log(bkgImageItem);
-    console.log(pathPrefix + firstImag++ + pathSufixx);
     bkgImageItem.style.backgroundImage = pathPrefix + firstImag++ + pathSufixx;
-    
 }
 
 // Execute Carrousel loop
