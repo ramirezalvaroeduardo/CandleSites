@@ -50,5 +50,6 @@ function addComment( dComment ) {
     var newP = document.createElement('p');
     var pText = document.createTextNode(dComment);
     newP.appendChild(pText);
+    newP.className = 'commClass';
     docInfo.appendChild(newP);
 }

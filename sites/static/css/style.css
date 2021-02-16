@@ -278,3 +278,10 @@ label {
 .closeItem:Hover {
 	color: red;
 }
+
+.commClass {
+	margin: 0;
+	padding: 0;
+	color: #c5c5c5;
+	font-weight: 700;
+}
