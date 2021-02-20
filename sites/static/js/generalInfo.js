@@ -1,13 +1,11 @@
 
-function showCompany(dName, dLink, dPhone, dAddress, dComments, dCommentators) {
+function showCompany(dSiteId, dName, dLink, dPhone, dAddress, dSites, dComments, dCommentators) {
     var cName    = document.getElementById('cName');
     var cSite    = document.getElementById('cSite');
     var cPhone   = document.getElementById('cPhone');
     var cAddress = document.getElementById('cAddress');
     //var cRating  = document.getElementById('cRating');
-
-console.log('-', dComments)
-console.log('+', dCommentators)
+    var cComments = []
 
     cName.innerHTML = dName;
     cSite.innerHTML = dLink;
@@ -15,15 +13,27 @@ console.log('+', dCommentators)
     cPhone.innerHTML = dPhone;
     cAddress.innerHTML = dAddress;
 
-    showItem('companyInfo');
+    var docInfo = document.getElementById('companyInfo');
+    var commId  = document.getElementById('commDiv');
+    commId.remove();
+    var newDiv = document.createElement('div');
+    newDiv.id = 'commDiv';
+    newDiv.style = 'padding-top: 1rem;';
+    docInfo.appendChild(newDiv);
 
+    // Adding Comment to Company Info Item
     for(var item of dComments) {
-        addComment(item.fields.comment);
-        addComment(item.fields.rate);
-        addComment(item.fields.candlesite);
-        addComment(item.fields.commentator);
+        if(item.fields.candlesite == dSiteId) {
+            var dCommtr;
+            // Showing Commentator Name
+            for(var item2 of dCommentators) {
+                if(item2.pk == item.fields.commentator) dCommtr = item2.fields.userName;
+            }        
+            addComment(item.fields.comment, item.fields.rate, dCommtr);
+        }
     }
 
+    showItem('companyInfo');
 }
 
 function showItem(dItem) {
@@ -45,11 +55,30 @@ function captureRecSite(dNewItem) {
     recSites.appendChild(newLi);
 }
 
-function addComment( dComment ) {
-    var docInfo = document.getElementById('companyInfo');
-    var newP = document.createElement('p');
-    var pText = document.createTextNode(dComment);
+function addComment( dComment, dRate, dCommtr ) {
+    var docInfo = document.getElementById('commDiv');
+    var newDiv = document.createElement('div');
+    var newP;
+    var pText;
+
+    newP = document.createElement('p');
+    pText = document.createTextNode(dCommtr);
     newP.appendChild(pText);
     newP.className = 'commClass';
-    docInfo.appendChild(newP);
+    newDiv.appendChild(newP);
+
+    newP = document.createElement('p');
+    pText = document.createTextNode(dComment);
+    newP.appendChild(pText);
+    newP.className = 'commClass';
+    newDiv.appendChild(newP);
+
+    newP = document.createElement('p');
+    pText = document.createTextNode(dRate);
+    newP.appendChild(pText);
+    newP.className = 'commClass';
+    newDiv.appendChild(newP);
+
+    newDiv.className = 'commDivClass';
+    docInfo.appendChild(newDiv);
 }

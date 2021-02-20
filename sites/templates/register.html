@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    <h3 class='dSectionTitle'>{{ pageTitle }}</h3>
+    <div>
+        <form id="captCommentator" method='POST' class='userFormClass' style='display:block'>
+            <!-- Register User Form -->
+            <fieldset>
+                <legend  class='legClass'>Register User</legend>
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type='submit'
+                    onClick='captureRecSite("id_companyName");' 
+                    class='submitClass' value='Save'
+                />
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

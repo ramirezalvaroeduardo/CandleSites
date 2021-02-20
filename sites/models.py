@@ -15,6 +15,6 @@ class Commentator(models.Model):
 class CandleSiteComments(models.Model):
     candlesite      = models.ForeignKey(CandleSite, on_delete=models.CASCADE)
     commentator     = models.ForeignKey(Commentator, on_delete=models.CASCADE)
-    comment         = models.TextField(max_length=1024)
+    comment         = models.CharField(max_length=1024)
     rate            = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
 
