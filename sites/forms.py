@@ -28,6 +28,9 @@ class CommentForm(forms.ModelForm):
     rate.widget.attrs.update({'class': 'dInput'})
     class Meta:
         model = CandleSiteComments
+        exclude = (
+            'candlesite',
+        )
         fields = [
             'comment',
             'rate',

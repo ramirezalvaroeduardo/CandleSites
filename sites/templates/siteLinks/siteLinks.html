@@ -60,42 +60,17 @@
                         </div>
                         <div id='commDiv' class='commDivClass'></div>
                     </div>
-                    
                     <form id="captForm" method='POST' class='formClass'>
-                        <!-- Capture New Company Site Form -->
-                        <fieldset>
-                            <legend  class='legClass'>New Company Site</legend>
-                            {% csrf_token %}
-                            {{ form.as_table }}
-                            <input type='submit'
-                                onClick='captureRecSite("id_companyName");' 
-                                class='submitClass' value='Save'
-                            />
-                        </fieldset>
-                    </form>
-                    <form id="commForm" method='POST' class='formClass'>
-                        <!-- Capture Comment for Site Form -->
-                        <fieldset>
-                            <legend  class='legClass'>Comment</legend>
-                            {% csrf_token %}
-                            {{ commForm.as_table }}
-                            <input type='submit'
-                                onClick='captureRecSite("id_companyName");' 
-                                class='submitClass' value='Save'
-                            />
-                        </fieldset>
+                        <table>
+                            <tbody>
+                                {% csrf_token %}
+                                {{ candleForm.as_table }}
+                                {{ commForm.as_table }}
+                            </tbody>
+                        </table>
+                        <input type='submit' class='submitClass' value='Save'/>
                     </form>
 
-
-
-                    <form method='POST' class='formBlog'  style='display: none;'>
-                        <!-- Capture Company Comment Box -->
-                        <fieldset>
-                            <legend  class='legClass'>Rating</legend>
-                            <label class='dLabel' for='bContent'>Write your opinion here:</label>
-                            <textarea type='text' class='textClass'></textarea>
-                        </fieldset>
-                    </form>
     
 
                     <!--form method='POST' class='formClass'>

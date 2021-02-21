@@ -46,12 +46,16 @@ def siteLinks(request):
 	commJson	= serializers.serialize('json', siteComments)
 	commtrsJson	= serializers.serialize('json', commentators)
 	
-	form = CandleSiteForm(request.POST or None)
+	candleForm = CandleSiteForm(request.POST or None)
 	commForm = CommentForm(request.POST or None)
-	if form.is_valid():
-		form.save()
-	if commForm.is_valid():
-    		commForm.save()
+	if candleForm.is_valid() and commForm.is_valid():
+	#TODO: Check solution in page https://stackoverflow.com/questions/10165046/django-add-form-field-to-generated-form-from-another-table
+		candlesite = candleForm.save()
+		comment    = commForm.save(commit=False)
+		comment.candlesite = candlesite
+		comment.save()
+
+
 	context = {
 		'pageTitle' : pageTitle,
 		'recnum'    : recNum,
@@ -59,7 +63,7 @@ def siteLinks(request):
 		'siteInfo'  : sitesJson,
 		'siteComms'	: commJson,
 		'commtrs'	: commtrsJson,
-		'form'      : form,
+		'candleForm': candleForm,
 		'commForm'  : commForm,
 	}
 	return render(request, 'siteLinks/siteLinks.html', context)
