@@ -301,11 +301,23 @@ label {
 }
 
 .commDivClass {
-	margin: 0 0 0.5rem 0.5rem;
-	padding: 0 0 0 0.5rem;
+	margin: 0.5rem 0.5rem;
+	padding: 0 0.5rem;
 	border: none;
 	border-radius: 0.3rem;
 	background-color: #c5c5c5;
+}
+
+.commClassCommentator {
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+	color: #64523f;
+}
+
+.commClassRate {
+	font-weight: 700;
+	float: right;
 }
 
 .commClass {

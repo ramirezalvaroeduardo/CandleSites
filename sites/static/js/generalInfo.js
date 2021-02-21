@@ -59,22 +59,23 @@ function addComment( dComment, dRate, dCommtr ) {
     var docInfo = document.getElementById('commDiv');
     var newDiv = document.createElement('div');
     var newP;
+    var newR;
     var pText;
 
     newP = document.createElement('p');
     pText = document.createTextNode(dCommtr);
     newP.appendChild(pText);
-    newP.className = 'commClass';
+    newP.className = 'commClassCommentator';
     newDiv.appendChild(newP);
+
+    newR = document.createElement('p');
+    pText = document.createTextNode(dRate);
+    newR.appendChild(pText);
+    newR.className = 'commClassRate';
+    newP.appendChild(newR);
 
     newP = document.createElement('p');
     pText = document.createTextNode(dComment);
-    newP.appendChild(pText);
-    newP.className = 'commClass';
-    newDiv.appendChild(newP);
-
-    newP = document.createElement('p');
-    pText = document.createTextNode(dRate);
     newP.appendChild(pText);
     newP.className = 'commClass';
     newDiv.appendChild(newP);

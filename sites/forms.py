@@ -30,6 +30,7 @@ class CommentForm(forms.ModelForm):
         model = CandleSiteComments
         exclude = (
             'candlesite',
+            'commentator',
         )
         fields = [
             'comment',
