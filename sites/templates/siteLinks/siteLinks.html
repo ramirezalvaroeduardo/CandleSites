@@ -11,7 +11,7 @@
                 <div class='col-sm-5'>
                     <fieldset id='recSites'>
                         <legend id='legLine' class='liHeaderAlt'><a class='newRec' 
-                            onClick='showItem("captForm"); showItem("commForm"); hideItem("companyInfo"); '>&#x2795; Add</a>Recorded Sites<!--a class='delRec'>&#x2716;</a--></legend>
+                            onClick='showItem("captForm"); hideItem("companyInfo"); '>&#x2795; Add</a>Recorded Sites<!--a class='delRec'>&#x2716;</a--></legend>
                         <ul id='id_recSites' class='ulStyle'>
                             {% if recnum == 0 %}
                                 <li>
@@ -61,33 +61,16 @@
                         <div id='commDiv' class='commDivClass'></div>
                     </div>
                     <form id="captForm" method='POST' class='formClass'>
-                        <table>
-                            <tbody>
+                        <!-- Capture New Company Site Form -->
+                        <fieldset>
+                            <legend  class='legClass'>New Company Site</legend>
                                 {% csrf_token %}
                                 {{ candleForm.as_table }}
                                 {{ commForm.as_table }}
-                            </tbody>
-                        </table>
-                        <input type='submit' class='submitClass' value='Save'/>
-                    </form>
-
-    
-
-                    <!--form method='POST' class='formClass'>
-                        <fieldset>
-                            <legend  class='legClass'>Link Record</legend>
-                            <label class='dLabel' for='cname'>Company Name:</label>
-                            <input class='dInput' type='text' id='cname' name='cname'>
-                            <label class='dLabel' for='clink'>Company Web Site:</label>
-                            <input class='dInput' type='text' id='clink' name='clink'>
-                            <label class='dLabel' for='cphone'>Company Phone Number:</label>
-                            <input class='dInput' class='dInput' type='text' id='cphone' name='cphone'>
-                            <label class='dLabel' for='caddress'>Company Address:</label>
-                            <input class='dInput' type='text' id='caddress' name='cncaddressme'>
+                            <input type='submit' class='submitClass' onClick='showItem("recSites")' value='Save'/>
                         </fieldset>
-                    </form-->
+                    </form>
                 </div>
-
             </div>
         </div>
     </fieldset>

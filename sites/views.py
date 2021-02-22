@@ -49,10 +49,10 @@ def siteLinks(request):
 	candleForm = CandleSiteForm(request.POST or None)
 	commForm = CommentForm(request.POST or None)
 	if candleForm.is_valid() and commForm.is_valid():
-	#TODO: Check solution in page https://stackoverflow.com/questions/10165046/django-add-form-field-to-generated-form-from-another-table
 		candlesite = candleForm.save()
 		comment    = commForm.save(commit=False)
 		comment.candlesite = candlesite
+		comment.commentator = Commentator.objects.get(userName='root')
 		comment.save()
 
 

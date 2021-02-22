@@ -5,7 +5,8 @@
 Site to review and submit Candle Item Suppliers new sites, comments and rates.
 
 ## Audience
-Manufactures/Persons looking for Candle Supplies.
+Manufactures/Persons looking for Candle Supplies Web Sites information and products and providing 
+feedback for later researchers.
 
 ## User Stories
 - As a manufacturer, I want to locate Candle supplier sites providing tools and materials, so I can build candles with high quaility materials.
