@@ -3,6 +3,9 @@ from .models import CandleSite
 from .models import CandleSiteComments
 from .models import Commentator
 
+from django.contrib.auth.models import User
+
+
 class CandleSiteForm(forms.ModelForm):
     companyName = forms.CharField(label='Company Name')
     companyLink = forms.CharField(label='Company Site')
@@ -38,13 +41,13 @@ class CommentForm(forms.ModelForm):
         ]
 
 class registerForm(forms.ModelForm):
-    userName = forms.CharField(label='User Name (email)')
-    userName.widget.attrs.update({'class': 'dInput'})
+    username = forms.CharField(label='User Name')
+    username.widget.attrs.update({'class': 'dInput'})
     password = forms.CharField(max_length=16, widget=forms.PasswordInput,label='Password')
     password.widget.attrs.update({'class': 'dInput'})
     class Meta:
-        model = Commentator
+        model = User
         fields = [
-            'userName',
+            'username',
             'password',
         ]

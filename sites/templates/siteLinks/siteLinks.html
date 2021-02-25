@@ -10,8 +10,14 @@
                 <!-- Company Site Informmation Display Box -->
                 <div class='col-sm-5'>
                     <fieldset id='recSites'>
-                        <legend id='legLine' class='liHeaderAlt'><a class='newRec' 
-                            onClick='showItem("captForm"); hideItem("companyInfo"); '>&#x2795; Add</a>Recorded Sites<!--a class='delRec'>&#x2716;</a--></legend>
+                        <legend id='legLine' class='liHeaderAlt'>
+                            <a class='newRec' 
+                                onClick='showItem("captForm"); 
+                                    hideItem("companyInfo"); 
+                                    hideItem("captComm")'>
+                                        &#x2795; Add a Site
+                            </a>Recorded Sites
+                        </legend>
                         <ul id='id_recSites' class='ulStyle'>
                             {% if recnum == 0 %}
                                 <li>
@@ -24,7 +30,7 @@
                             {% else %}
                                 {% for sitelink in sitelinks %}
                                     <li class='liStyle' 
-                                        onclick='showCompany("{{sitelink.id}}", "{{sitelink.companyName}}", "{{sitelink.companyLink}}", "{{sitelink.companyPhone}}", "{{sitelink.companyAddress}}", {{ siteInfo }}, {{ siteComms }}, {{ commtrs }} ); hideItem("captForm");'><a href='#{{sitelink.id}}' class='aStyle'>{{ sitelink.companyName }}</a>
+                                        onclick='showCompany("{{sitelink.id}}", "{{sitelink.companyName}}", "{{sitelink.companyLink}}", "{{sitelink.companyPhone}}", "{{sitelink.companyAddress}}", {{ siteInfo }}, {{ siteComms }}, {{ commtrs }} ); hideItem("captForm"); hideItem("captComm");'><a href='#{{sitelink.id}}' class='aStyle'>{{ sitelink.companyName }}</a>
                                     </li>
                                 {% endfor %}
                             {% endif %}
@@ -35,7 +41,7 @@
                     <div id='companyInfo' class='companyInfo'>
                         <!-- Company Site Informmation Display Box -->
                         <div>
-                            <a class='closeItem' onClick='hideItem("companyInfo")'>X-Close</a>
+                            <a class='closeItem' onClick='hideItem("companyInfo"); hideItem("captComm");'>X-Close</a>
                             <p id='cName' class='companyName'>Company Name</p>
                         </div>
                         <div>
@@ -56,9 +62,15 @@
                         </div>
                         <div>
                             <a class='companySymbol'>&#x2712;</a>
-                            <p id='cComments' class='companyData'>Comments</p>
+                            <p id='cComments' class='companyData'>
+                                <a class='newRec' 
+                                    onClick='showItem("captComm"); 
+                                        hideItem("captForm"); '>
+                                        &#x2795; Add a Comment
+                                </a>Comments
+                            </p>
                         </div>
-                        <div id='commDiv' class='commDivClass'></div>
+                    <div id='commDiv' class='commDivClass'></div>
                     </div>
                     <form id="captForm" method='POST' class='formClass'>
                         <!-- Capture New Company Site Form -->
@@ -68,6 +80,26 @@
                                 {{ candleForm.as_table }}
                                 {{ commForm.as_table }}
                             <input type='submit' class='submitClass' onClick='showItem("recSites")' value='Save'/>
+                        </fieldset>
+                    </form>
+{% if messages %}
+<ul class="regUlStyle">
+{% for item in messages %}
+    <li>***{{ item }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+                    <form id="captComm" method='POST' class='formClass'>
+<!-- Capture New Company Site Form -->
+<br/>
+{% if form.errors %}
+<p class="regPErrorClass">Invalid Information!</p>
+{% endif %}
+                        <fieldset>
+                            <legend  class='legClass'>New Site Comment</legend>
+                                {% csrf_token %}
+                                {{ commForm.as_table }}
+                            <input type='submit' class='submitClass' value='Save Comm'/>
                         </fieldset>
                     </form>
                 </div>

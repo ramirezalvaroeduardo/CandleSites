@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+
+{% block content %}
+    <h3 class='dSectionTitle'>Login</h3>
+    {% if form.errors %}
+        <p>Invalid User or Password!</p>
+    {% endif %}
+    <div>
+        <form id="login" method='POST' class='userFormClass' style='display:block'>
+            <!-- Register User Form -->
+            <fieldset>
+                <legend  class='legClass'>User Login</legend>
+                {% csrf_token %}    
+                <label for="username">User Name:</label>
+                <input type="text" name="username" class="dInput" required="" id="username">
+                <label for="password">Password:</label>
+                <input type="password" name="password" maxlength="16" class="dInput" required="" id="password">
+                <input type='submit' class='submitClass' value='Login'/>
+                <input type="hidden" name="next" value="{{ next|escape }}"/>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

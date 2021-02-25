@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 class CandleSite(models.Model):
     companyName     = models.CharField(max_length=128)
@@ -14,7 +15,7 @@ class Commentator(models.Model):
 
 class CandleSiteComments(models.Model):
     candlesite      = models.ForeignKey(CandleSite, on_delete=models.CASCADE)
-    commentator     = models.ForeignKey(Commentator, on_delete=models.CASCADE, default=0)
+    commentator     = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
     comment         = models.CharField(max_length=1024)
     rate            = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
 

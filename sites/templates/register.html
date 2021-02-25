@@ -3,16 +3,39 @@
 {% block content %}
     <h3 class='dSectionTitle'>{{ pageTitle }}</h3>
     <div>
+        {% if messages %}
+            <ul class="regUlStyle">
+                {% for item in messages %}
+                    <li>***{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
         <form id="captCommentator" method='POST' class='userFormClass' style='display:block'>
             <!-- Register User Form -->
             <fieldset>
                 <legend  class='legClass'>Register User</legend>
                 {% csrf_token %}
-                {{ form.as_table }}
-                <input type='submit'
-                    onClick='captureRecSite("id_companyName");' 
-                    class='submitClass' value='Save'
-                />
+                <br/>
+                {% if form.errors %}
+                    <p class="regPErrorClass">Invalid Information!</p>
+                {% endif %}
+                <label for="username">User Name:</label>
+                <input type="text" name="username" class="dInput" required="" id="username">
+                <p class="regPClass">*** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+                <label for="password1">Password:</label>
+                <input type="password" name="password1" maxlength="16" class="dInput" required="" id="password1">
+                <ul class="regUlStyle">
+                    <li>Your password can’t be too similar to your other personal information.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password can’t be entirely numeric.</li>
+                </ul>
+                <label for="password2">Password Corfirmation:</label>
+                <input type="password" name="password2" maxlength="16" class="dInput" required="" id="password2">
+                <p class="regPClass">*** Enter the same password as before, for verification.</p>
+                <input type='submit' class='submitClass' value='Save'/>
+                <input type="hidden" name="next" value="{{ next|escape }}"/>
             </fieldset>
         </form>
     </div>

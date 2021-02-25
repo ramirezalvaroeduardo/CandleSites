@@ -86,8 +86,20 @@
 	height: 2.4rem
 }
 
+.loginClass {
+	margin-right: 1rem;
+	padding: 0;
+	text-decoration: none;
+	color: #c5c5c5;
+	vertical-align: top;
+	border: none;
+	border-radius: 0.2rem;
+	font-weight: normal;
+}
+
 .newRec {
 	margin-top: 0.5rem;
+	margin-left: 1.5rem;
 	padding: 0 0.25rem 0 0.25rem;
 	text-decoration: none;
 	float: right;
@@ -374,5 +386,35 @@ label {
 	opacity: 1;
 	border: solid 0.1rem; 
 	border-radius: 0.3rem; 
+	box-shadow: 1rem 1rem 0.5rem #b1b0b0;
+}
+
+.regUlStyle {
+	margin: 1rem 0 1rem 1rem;
+	border: solid 0.1rem #64523f;
+	border-radius: 0.3rem;
+	font-size: 0.8rem;
+	background-color: rgba(240, 240, 240, 0.8);
+	max-height: 40rem;
+	overflow-y: auto;
+	box-shadow: 1rem 1rem 0.5rem #b1b0b0;
+}
+
+.regPClass {
+	margin: 0 0 1rem 1rem;
+	padding-top: 0;
+	font-size: 0.8rem;
+	color: #c5c5c5;
+}
+
+.regPErrorClass {
+	margin: 2rem 1rem 0 1rem;
+	padding: 0.5rem 0.5rem;
+	border: solid 0.1rem #64523f;
+	border-radius: 0.3rem;
+	font-size: 1.4rem;
+	color: #c5c5c5;
+	background-color: rgba(168, 66, 66, 0.8);
+	height: 3rem;
 	box-shadow: 1rem 1rem 0.5rem #b1b0b0;
 }

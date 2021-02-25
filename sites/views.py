@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import CandleSiteForm
 from .forms import CommentForm
 from .forms import registerForm
@@ -6,6 +6,15 @@ from .models import CandleSite
 from .models import CandleSiteComments
 from .models import Commentator
 from django.core import serializers
+
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
+
+
+
 
 def sites(request):
 	inventory = CandleSite.objects.all().count()
@@ -17,9 +26,10 @@ def sites(request):
 	return render( request, 'sites.html', context )
 
 def register(request):
-	userForm = registerForm(request.POST or None)
+	userForm = UserCreationForm(request.POST or None)
 	if userForm.is_valid():
 		userForm.save()
+		return redirect('/sites/siteLinks')
 	context = {
 		'pageTitle' : 'Register',
 		'form'      : userForm,
@@ -33,28 +43,30 @@ def about(request):
 	}
 	return render(request, 'about.html', context)
 
-def template(request):
-	return render( request, 'template.html')
-
 def siteLinks(request):
-	pageTitle	= 'Store Sites'
+	#if request.user.is_authenticated:
+		#return redirect(settings.LOGIN_URL)
+	candlesite = 0;
+	pageTitle	= 'Store Sites - ' + str( request.user.id )
+	dUser = User.objects.get(username='')
 	recNum		= CandleSite.objects.all().count()
 	siteLinks	= CandleSite.objects.all().order_by('companyName')
 	siteComments= CandleSiteComments.objects.all()
 	commentators= Commentator.objects.all()
+	currUsers	= User.objects.all()
 	sitesJson	= serializers.serialize('json', siteLinks)
 	commJson	= serializers.serialize('json', siteComments)
 	commtrsJson	= serializers.serialize('json', commentators)
-	
 	candleForm = CandleSiteForm(request.POST or None)
 	commForm = CommentForm(request.POST or None)
 	if candleForm.is_valid() and commForm.is_valid():
+		if not request.user.is_authenticated:
+			return redirect(settings.LOGIN_URL)
 		candlesite = candleForm.save()
 		comment    = commForm.save(commit=False)
 		comment.candlesite = candlesite
-		comment.commentator = Commentator.objects.get(userName='root')
+		comment.commentator = User.objects.get(id=request.user.id)
 		comment.save()
-
 
 	context = {
 		'pageTitle' : pageTitle,
@@ -67,6 +79,3 @@ def siteLinks(request):
 		'commForm'  : commForm,
 	}
 	return render(request, 'siteLinks/siteLinks.html', context)
-
-def createSiteLinks(request):
-    form = CandleSiteForm(request.POST or None)

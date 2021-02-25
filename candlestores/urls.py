@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.siteLinks, name='siteLinks'),
     path('sites/', include('sites.urls'), name='sites'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
