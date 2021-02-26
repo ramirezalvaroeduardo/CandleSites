@@ -14,4 +14,4 @@ feedback for later researchers.
 
 ## Wireframe
 Please click on the following link:
-[Wireframe Click here!](./wireFrame/CandleStoreSites.png)
+[Wireframe Click here!](./wireFrames/CandleStoreSites.png)
