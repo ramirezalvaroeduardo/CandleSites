@@ -27,7 +27,7 @@ function showCompany(dSiteId, dName, dLink, dPhone, dAddress, dSites, dComments,
             var dCommtr;
             // Showing Commentator Name
             for(var item2 of dCommentators) {
-                if(item2.pk == item.fields.commentator) dCommtr = item2.fields.userName;
+                if(item2.pk == item.fields.commentator) dCommtr = item2.fields.username;
             }        
             addComment(item.fields.comment, item.fields.rate, dCommtr);
         }

@@ -53,7 +53,7 @@ def siteLinks(request):
 	currUsers	= User.objects.all()
 	sitesJson	= serializers.serialize('json', siteLinks)
 	commJson	= serializers.serialize('json', siteComments)
-	commtrsJson	= serializers.serialize('json', commentators)
+	commtrsJson	= serializers.serialize('json', currUsers)
 	candleForm = CandleSiteForm(request.POST or None)
 	commForm = CommentForm(request.POST or None)
 	if candleForm.is_valid() and commForm.is_valid():
