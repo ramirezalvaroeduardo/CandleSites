@@ -10,7 +10,7 @@ feedback for later researchers.
 
 ## User Stories
 - As a manufacturer, I want to locate Candle supplier sites providing tools and materials, so I can build candles with high quaility materials.
-- As a person staring a new Candle company, I want to find good rated Candle tools and material suppliers, so I can provide Candles with high standards.
+- As a person starting a new Candle company, I want to find good rated Candle tools and material suppliers, so I can provide Candles with high standards.
 
 ## Wireframe
 Please click on the following link:
