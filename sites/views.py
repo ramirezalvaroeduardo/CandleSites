@@ -48,7 +48,6 @@ def siteLinks(request):
 		#return redirect(settings.LOGIN_URL)
 	candlesite = 0;
 	pageTitle	= 'Store Sites - ' + str( request.user.id )
-	dUser = User.objects.get(username='')
 	recNum		= CandleSite.objects.all().count()
 	siteLinks	= CandleSite.objects.all().order_by('companyName')
 	siteComments= CandleSiteComments.objects.all()
