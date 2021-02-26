@@ -14,8 +14,6 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 
 
-
-
 def sites(request):
 	inventory = CandleSite.objects.all().count()
 	context = {
@@ -44,10 +42,10 @@ def about(request):
 	return render(request, 'about.html', context)
 
 def siteLinks(request):
-	#if request.user.is_authenticated:
-		#return redirect(settings.LOGIN_URL)
+	if not request.user.is_authenticated:
+		return redirect(settings.LOGIN_URL)
 	candlesite = 0;
-	pageTitle	= 'Store Sites - ' + str( request.user.id )
+	pageTitle	= 'Store Sites - ' + str( request.user.username )
 	recNum		= CandleSite.objects.all().count()
 	siteLinks	= CandleSite.objects.all().order_by('companyName')
 	siteComments= CandleSiteComments.objects.all()
@@ -64,7 +62,8 @@ def siteLinks(request):
 		candlesite = candleForm.save()
 		comment    = commForm.save(commit=False)
 		comment.candlesite = candlesite
-		comment.commentator = User.objects.get(id=request.user.id)
+		comment.commentator = User.objects.get(pk=request.user.pk)
+		print( 'User:', comment.commentator)
 		comment.save()
 
 	context = {

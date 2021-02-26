@@ -63,11 +63,11 @@
                         <div>
                             <a class='companySymbol'>&#x2712;</a>
                             <p id='cComments' class='companyData'>
-                                <a class='newRec' 
+                                <!--a class='newRec' 
                                     onClick='showItem("captComm"); 
                                         hideItem("captForm"); '>
                                         &#x2795; Add a Comment
-                                </a>Comments
+                                </a-->Comments
                             </p>
                         </div>
                     <div id='commDiv' class='commDivClass'></div>
@@ -82,23 +82,16 @@
                             <input type='submit' class='submitClass' onClick='showItem("recSites")' value='Save'/>
                         </fieldset>
                     </form>
-{% if messages %}
-<ul class="regUlStyle">
-{% for item in messages %}
-    <li>***{{ item }}</li>
-{% endfor %}
-</ul>
-{% endif %}
                     <form id="captComm" method='POST' class='formClass'>
-<!-- Capture New Company Site Form -->
-<br/>
-{% if form.errors %}
-<p class="regPErrorClass">Invalid Information!</p>
-{% endif %}
                         <fieldset>
                             <legend  class='legClass'>New Site Comment</legend>
-                                {% csrf_token %}
-                                {{ commForm.as_table }}
+                            {% csrf_token %}
+                            <!-- Capture New Company Site Form -->
+                            <br/>
+                            {% if form.errors %}
+                            <p class="regPErrorClass">Invalid Information!</p>
+                            {% endif %}
+                            {{ commForm.as_table }}
                             <input type='submit' class='submitClass' value='Save Comm'/>
                         </fieldset>
                     </form>
